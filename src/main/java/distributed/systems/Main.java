@@ -21,23 +21,13 @@ public class Main {
         }
 
         public void startProcess(){
-            System.out.println("Give me the number of servers");
             Scanner sc = new Scanner(System.in);
-
-            int noOfServers = sc.nextInt();
-            HealthServer healthServer = new HealthServer("127.0.0.1",80);
-
+            HealthServer healthServer = HealthServer.getInstance();
             LoadBalancer loadBalancer = new LoadBalancer();
-            for (int i = 0; i < noOfServers; i++) {
-                Server server = new Server(i,healthServer);
-                loadBalancer.addServer(server);
-            }
-
 
             while(true){
-
+                System.out.print("Your order is my command");
                 String commandWithArguments = sc.nextLine();
-
                 String[] totalCommand = commandWithArguments.split(" ");
                 String commandHead = totalCommand[0];
                 String[] arguments = Arrays.copyOfRange(totalCommand,1,totalCommand.length);
